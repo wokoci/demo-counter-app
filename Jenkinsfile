@@ -1,20 +1,13 @@
 pipeline{
     agent any
-    stage("A"){
-        steps{
-            echo "====++++executing A++++===="
-        }
-        post{
-            always{
-                echo "====++++always++++===="
+    stages{
+        stage{
+            stage('Git Checkout'){
+                step{
+                    git branch: 'main', url: 'https://github.com/wokoci/demo-counter-app.git'
+                }
+
             }
-            success{
-                echo "====++++A executed successfully++++===="
-            }
-            failure{
-                echo "====++++A execution failed++++===="
-            }
-    
         }
     }
 }
